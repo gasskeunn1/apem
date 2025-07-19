@@ -85,7 +85,7 @@
 
   <div class="flex justify-center mt-4 px-4" id="playerSection">
     <div class="w-full max-w-4xl">
-      <video id="videoPlayer" controls class="w-full rounded shadow-2xl bg-black glow-effect" poster="assets/poster.png"></video>
+      <video id="videoPlayer" class="w-full rounded shadow-2xl bg-black glow-effect" poster="assets/poster.png"></video>
     </div>
   </div>
 
@@ -186,6 +186,7 @@
       const src = el.dataset.src;
       const poster = el.dataset.poster;
       video.poster = poster;
+      video.controls = true;
 
       if (Hls.isSupported()) {
         if (hls) hls.destroy();
