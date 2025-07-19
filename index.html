@@ -7,233 +7,232 @@
 
   <meta name="description" content="Tonton live streaming voli di GameOnX.">
   <meta property="og:title" content="GameOnX - Live Streaming">
-  <meta property="og:description" content="Streaming olahraga terbaik hanya di GameOnX.">
-  <meta property="og:image" content="/assets/og-image.jpg">
-  <meta property="og:url" content="https://gameonx-apem.vercel.app">
-  <link rel="icon" href="/assets/favicon.png" type="image/png">
+  <meta property="og:description" content="Tonton live streaming voli di GameOnX.">
+  <meta property="og:image" content="https://www.gameonx.my.id/assets/preview.jpg">
+  <meta property="og:url" content="https://www.gameonx.my.id">
+  <meta property="og:type" content="website">
 
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+  <link rel="manifest" href="assets/site.webmanifest">
+
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2"></script>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
   <style>
-    .blink {
-      animation: blinker 1.5s linear infinite;
+    .glow-effect {
+      box-shadow: 0 0 10px rgba(75, 85, 99, 0.5), 0 0 20px rgba(75, 85, 99, 0.3);
+      transition: box-shadow 0.3s ease;
     }
-    @keyframes blinker {
-      50% { opacity: 0; }
+    .glow-effect:hover {
+      box-shadow: 0 0 12px rgba(75, 85, 99, 0.7), 0 0 25px rgba(75, 85, 99, 0.4);
+    }
+    .channel-card {
+      transition: box-shadow 0.3s ease;
+    }
+    .channel-card:hover {
+      box-shadow: 0 0 12px rgba(239, 68, 68, 0.6), 0 0 24px rgba(239, 68, 68, 0.4);
+    }
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 50;
+      background-color: #1f2937;
+      border-radius: 9999px;
+      padding: 0.75rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      transition: opacity 0.3s ease;
+    }
+    #scrollTopBtn.show {
+      display: block;
+      opacity: 1;
     }
   </style>
 </head>
-<body class="bg-gray-900 text-white">
 
-  <header class="flex justify-between items-center px-4 py-3">
-    <div>
-      <img src="assets/GoodGamesdsda.png" alt="GameOnX Logo" class="h-12">
+<body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col relative">
+
+  <button id="scrollTopBtn" onclick="scrollToTop()" class="hover:bg-gray-700">
+    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2"
+      viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    </svg>
+  </button>
+
+  <div class="px-4 pt-4">
+    <header class="flex justify-between items-center px-4 py-3 bg-gray-800 shadow-md rounded-md">
+      <div>
+        <img src="assets/gameonx logo 3.png" alt="GameOnX Logo" class="h-12 w-auto sm:h-10 md:h-12 lg:h-16">
+      </div>
+      <div class="flex gap-2 text-sm">
+        <a href="https://chat.whatsapp.com/L9pViyD35Zq439t75avxq8" target="_blank" class="bg-gray-600 px-3 py-1 rounded-lg font-semibold">Join Grup</a>
+        <a href="https://sociabuzz.com/fiqaz/donate" target="_blank" class="bg-gray-600 px-3 py-1 rounded-lg font-semibold">Donasi</a>
+      </div>
+    </header>
+  </div>
+  <div class="text-center mt-4 mb-2">
+    <div class="inline-block bg-gradient-to-r from-gray-800 to-gray-700 px-6 py-2 rounded text-lg font-bold text-white shadow-lg border border-gray-600 transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+      🔴LIVE STREAMING
     </div>
-  </header>
+  </div>
 
-  <main class="mt-6 flex justify-center">
-    <div class="w-full max-w-4xl px-4">
-      <video id="videoPlayer" controls class="w-full rounded-xl shadow-2xl bg-black" poster="assets/poster.png"></video>
+  <div class="flex justify-center mt-4 px-4" id="playerSection">
+    <div class="w-full max-w-4xl">
+      <video id="videoPlayer" class="w-full rounded shadow-2xl bg-black glow-effect" poster="assets/poster.png"></video>
     </div>
-  </main>
+  </div>
 
-  <section class="flex flex-wrap justify-center gap-6 max-w-7xl channel-container px-4 mt-10" id="channelList"></section>
+  <div class="flex justify-center mt-4 gap-2 text-sm flex-wrap">
+    <button class="bg-transparent border border-white/30 text-white px-3 py-1 rounded hover:bg-white/10 transition" onclick="setQuality('auto')">Auto</button>
+    <button class="bg-transparent border border-white/30 text-white px-3 py-1 rounded hover:bg-white/10 transition" onclick="setQualityByHeight(360)">360p</button>
+    <button class="bg-transparent border border-white/30 text-white px-3 py-1 rounded hover:bg-white/10 transition" onclick="setQualityByHeight(540)">540p</button>
+    <button class="bg-transparent border border-white/30 text-white px-3 py-1 rounded hover:bg-white/10 transition" onclick="setQualityByHeight(720)">720p</button>
+    <button class="bg-transparent border border-white/30 text-white px-3 py-1 rounded hover:bg-white/10 transition" onclick="setQualityByHeight(1080)">1080p</button>
+  </div>
+
+  <div class="flex justify-center mt-10 px-4">
+      <div class="flex flex-wrap justify-center gap-6 max-w-6xl">
+      <div class="bg-gray-800 rounded-xl p-4 shadow-md w-60 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" data-src="https://subrugopuciblchlvl6uqa666p23rig.happy-ending.site/c5phutHUkothlwRudRO8rosaS3B64ini.m3u8" data-poster="https://cdn.motor1.com/images/mgl/40EzYz/s3/motogp-logo.jpg?width=1920">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">MotoGP</h3>
+        <p class="text-gray-300 text-sm">Sab 19-07-2025</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-4 shadow-md w-60 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/WSwE6WlH/live.isml/.m3u8" data-poster="https://cdn.jwplayer.com/v2/media/WSwE6WlH/poster.jpg?width=1920">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Turkiye vs Brazil</h3>
+        <p class="text-gray-300 text-sm">Sab 19-07-2025 13:30 WIB</p>
+      </div>        
+      <div class="bg-gray-800 rounded-xl p-4 shadow-md w-60 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/aS8EXfMk/live.isml/.m3u8" data-poster="https://cdn.jwplayer.com/v2/media/aS8EXfMk/poster.jpg?width=1920">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Germany vs USA</h3>
+        <p class="text-gray-300 text-sm">Sab 19-07-2025 17:30 WIB</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-4 shadow-md w-60 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/TK44j28x/live.isml/.m3u8" data-poster="https://cdn.jwplayer.com/v2/media/TK44j28x/poster.jpg?width=1920">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Serbia vs Canada</h3>
+        <p class="text-gray-300 text-sm">Sab 19-07-2025 21:30 WIB</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-4 shadow-md w-60 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/VIlLFZSP/live.isml/.m3u8" data-poster="https://cdn.jwplayer.com/v2/media/VIlLFZSP/poster.jpg?width=1920">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Bulgaria vs Poland</h3>
+        <p class="text-gray-300 text-sm">Sab 19-07-2025 22:00 WIB</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-4 shadow-md w-60 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/clFXRV38/live.isml/.m3u8" data-poster="https://cdn.jwplayer.com/v2/media/clFXRV38/poster.jpg?width=1920">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Iran vs France</h3>
+        <p class="text-gray-300 text-sm">Min 20-07-2025 01:30 WIB</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-4 shadow-md w-60 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/4bTTZYiP/live.isml/.m3u8" data-poster="https://cdn.jwplayer.com/v2/media/4bTTZYiP/poster.jpg?width=1920">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Slovenia vs Italy</h3>
+        <p class="text-gray-300 text-sm">Min 20-07-2025 01:30 WIB</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-4 shadow-md w-60 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/1aCO5bY5/live.isml/.m3u8" data-poster="https://cdn.jwplayer.com/v2/media/1aCO5bY5/poster.jpg?width=1920">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Turkiye vs Argentina</h3>
+        <p class="text-gray-300 text-sm">Min 20-07-2025 09:00 WIB</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-4 shadow-md w-60 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/1x55Ewi0/live.isml/.m3u8" data-poster="https://cdn.jwplayer.com/v2/media/1x55Ewi0/poster.jpg?width=1920">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Germany vs Brazil</h3>
+        <p class="text-gray-300 text-sm">Min 20-07-2025 12:30 WIB</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-4 shadow-md w-60 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/qMJjQLs7/live.isml/.m3u8" data-poster="https://cdn.jwplayer.com/v2/media/qMJjQLs7/poster.jpg?width=1920">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">USA vs Japan</h3>
+        <p class="text-gray-300 text-sm">Min 20-07-2025 17:20 WIB</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-4 shadow-md w-60 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/gWh3cqml/live.isml/.m3u8" data-poster="https://cdn.jwplayer.com/v2/media/gWh3cqml/poster.jpg?width=1920">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Ukraine vs Canada</h3>
+        <p class="text-gray-300 text-sm">Min 20-07-2025 18:00 WIB</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-4 shadow-md w-60 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/Y5zXWkew/live.isml/.m3u8" data-poster="https://cdn.jwplayer.com/v2/media/Y5zXWkew/poster.jpg?width=1920">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">China vs Cuba</h3>
+        <p class="text-gray-300 text-sm">Min 20-07-2025 18:30 WIB</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-4 shadow-md w-60 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/zWCW21FJ/live.isml/.m3u8" data-poster="https://cdn.jwplayer.com/v2/media/zWCW21FJ/poster.jpg?width=1920">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Netherlands vs Italy</h3>
+        <p class="text-gray-300 text-sm">Min 20-07-2025 21:30 WIB</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-4 shadow-md w-60 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/MlzCqA5F/live.isml/.m3u8" data-poster="https://cdn.jwplayer.com/v2/media/MlzCqA5F/poster.jpg?width=1920">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Bulgaria vs Iran</h3>
+        <p class="text-gray-300 text-sm">Min 20-07-2025 22:00 WIB</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-4 shadow-md w-60 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/SsxyN4Uo/live.isml/.m3u8" data-poster="https://cdn.jwplayer.com/v2/media/SsxyN4Uo/poster.jpg?width=1920">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">France vs Poland</h3>
+        <p class="text-gray-300 text-sm">Senin 21-07-2025 01:30 WIB</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-4 shadow-md w-60 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/agpcePYv/live.isml/.m3u8" data-poster="https://cdn.jwplayer.com/v2/media/agpcePYv/poster.jpg?width=1920">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Serbia vs Slovenia</h3>
+        <p class="text-gray-300 text-sm">Senin 21-07-2025 01:30 WIB</p>
+      </div>        
+    </div>
+  </div>
+
+  <div id="donasi" class="flex justify-center mt-6 px-4">
+    <div class="bg-white p-4 rounded-xl shadow-lg text-center">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://sociabuzz.com/fiqaz/support" alt="QR Donasi" class="mx-auto mb-2" />
+      <p class="text-black font-semibold">Support/Donasi</p>
+    </div>
+  </div>
+
+  <footer class="text-center text-xs text-gray-400 mt-auto py-4">
+    © 2025 GameOnX
+  </footer>
 
   <script>
-    const channels = [
-      {
-        title: "MotoGP",
-        date: "TNT 2",
-        src: "https://subrugopuciblchlvl6uqa666p23rig.happy-ending.site/c5phutHUkothlwRudRO8rosaS3B64ini.m3u8",
-        poster: "https://cdn.motor1.com/images/mgl/40EzYz/s3/motogp-logo.jpg?width=1920"
-      },
-      {
-        title: "Turkiye vs Brazil",
-        date: "2025-07-19T13:30:00+07:00",
-        src: "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/WSwE6WlH/live.isml/.m3u8",
-        poster: "https://cdn.jwplayer.com/v2/media/WSwE6WlH/poster.jpg?width=1920"
-      },
-      {
-        title: "Germany vs USA",
-        date: "2025-07-19T17:30:00+07:00",
-        src: "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/aS8EXfMk/live.isml/.m3u8",
-        poster: "https://cdn.jwplayer.com/v2/media/aS8EXfMk/poster.jpg?width=1920"
-      },
-      {
-        title: "Serbia vs Canada",
-        date: "2025-07-19T21:30:00+07:00",
-        src: "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/TK44j28x/live.isml/.m3u8",
-        poster: "https://cdn.jwplayer.com/v2/media/TK44j28x/poster.jpg?width=1920"
-      },
-      {
-        title: "Bulgaria vs Poland",
-        date: "2025-07-19T22:00:00+07:00",
-        src: "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/VIlLFZSP/live.isml/.m3u8",
-        poster: "https://cdn.jwplayer.com/v2/media/VIlLFZSP/poster.jpg?width=1920"
-      },
-      {
-        title: "Iran vs France",
-        date: "2025-07-20T01:30:00+07:00",
-        src: "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/clFXRV38/live.isml/.m3u8",
-        poster: "https://cdn.jwplayer.com/v2/media/clFXRV38/poster.jpg?width=1920"
-      },
-      {
-        title: "Slovenia vs Italy",
-        date: "2025-07-20T01:30:00+07:00",
-        src: "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/4bTTZYiP/live.isml/.m3u8",
-        poster: "https://cdn.jwplayer.com/v2/media/4bTTZYiP/poster.jpg?width=1920"
-      },    
-      {
-        title: "Turkiye vs Argentina",
-        date: "2025-07-20T09:00:00+07:00",
-        src: "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/1aCO5bY5/live.isml/.m3u8",
-        poster: "https://cdn.jwplayer.com/v2/media/1aCO5bY5/poster.jpg?width=1920"
-      },    
-      {
-        title: "Germany vs Brazil",
-        date: "2025-07-20T12:30:00+07:00",
-        src: "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/1x55Ewi0/live.isml/.m3u8",
-        poster: "https://cdn.jwplayer.com/v2/media/1x55Ewi0/poster.jpg?width=1920"
-      },
-      {
-        title: "USA vs Japan",
-        date: "2025-07-20T17:20:00+07:00",
-        src: "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/qMJjQLs7/live.isml/.m3u8",
-        poster: "https://cdn.jwplayer.com/v2/media/qMJjQLs7/poster.jpg?width=1920"
-      },
-      {
-        title: "Ukraine vs Canada",
-        date: "2025-07-20T18:00:00+07:00",
-        src: "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/gWh3cqml/live.isml/.m3u8",
-        poster: "https://cdn.jwplayer.com/v2/media/gWh3cqml/poster.jpg?width=1920"
-      },    
-      {
-        title: "China vs Cuba",
-        date: "2025-07-20T18:30:00+07:00",
-        src: "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/Y5zXWkew/live.isml/.m3u8",
-        poster: "https://cdn.jwplayer.com/v2/media/Y5zXWkew/poster.jpg?width=1920"
-      },    
-      {
-        title: "Netherlands vs Italy",
-        date: "2025-07-20T21:30:00+07:00",
-        src: "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/zWCW21FJ/live.isml/.m3u8",
-        poster: "https://cdn.jwplayer.com/v2/media/zWCW21FJ/poster.jpg?width=1920"
-      },    
-      {
-        title: "Bulgaria vs Iran",
-        date: "2025-07-20T22:00:00+07:00",
-        src: "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/MlzCqA5F/live.isml/.m3u8",
-        poster: "https://cdn.jwplayer.com/v2/media/MlzCqA5F/poster.jpg?width=1920"
-      },    
-      {
-        title: "France vs Poland",
-        date: "2025-07-21T01:30:00+07:00",
-        src: "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/SsxyN4Uo/live.isml/.m3u8",
-        poster: "https://cdn.jwplayer.com/v2/media/SsxyN4Uo/poster.jpg?width=1920"
-      },    
-      {
-        title: "Serbia vs Slovenia",
-        date: "2025-07-21T01:30:00+07:00",
-        src: "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/agpcePYv/live.isml/.m3u8",
-        poster: "https://cdn.jwplayer.com/v2/media/agpcePYv/poster.jpg?width=3201920"
-      },    
-    ];
-
-    const container = document.getElementById("channelList");
     const video = document.getElementById("videoPlayer");
-    let hls, frozenCheckInterval, lastBuffered = 0;
+    video.muted = false;
+    let hls;
 
     function loadStreamCustom(el) {
       const src = el.dataset.src;
       const poster = el.dataset.poster;
-
       video.poster = poster;
-      video.src = '';
-      if (hls) {
-        hls.destroy();
-        hls = null;
-      }
+      video.controls = true;
 
-      if (window.Hls && Hls.isSupported()) {
-        try {
-          hls = new Hls();
-          hls.loadSource(src);
-          hls.attachMedia(video);
-          hls.on(Hls.Events.MANIFEST_PARSED, function () {
-            video.play();
-            monitorStream(video, el);
-          });
-          hls.on(Hls.Events.ERROR, function (event, data) {
-            console.error("HLS.js error:", data);
-          });
-        } catch (err) {
-          console.error("HLS.js init error:", err);
-        }
-      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = src;
-        video.addEventListener('loadedmetadata', function () {
+      if (Hls.isSupported()) {
+        if (hls) hls.destroy();
+        hls = new Hls();
+        hls.loadSource(src);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, function () {
           video.play();
         });
-        monitorStream(video, el);
-      } else {
-        alert("HLS tidak didukung di browser ini.");
+      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        video.src = src;
+        video.addEventListener("loadedmetadata", () => {
+          video.play();
+        }, { once: true });
       }
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.getElementById('playerSection').scrollIntoView({ behavior: 'smooth' });
     }
 
-    function monitorStream(video, channelCard) {
-      clearInterval(frozenCheckInterval);
-      lastBuffered = 0;
-      frozenCheckInterval = setInterval(() => {
-        if (video.readyState < 3) return;
-        const currentBuffered = video.buffered.length ? video.buffered.end(0) : 0;
-        if (currentBuffered === lastBuffered) {
-          alert("Stream telah berhenti. Channel akan dihapus.");
-          if (hls) hls.destroy();
-          video.pause();
-          video.src = "";
-          channelCard.remove();
-          clearInterval(frozenCheckInterval);
-        }
-        lastBuffered = currentBuffered;
-      }, 300000); // 5 menit
+    function setQuality(level) {
+      if (!hls) return;
+      hls.currentLevel = level === 'auto' ? -1 : parseInt(level);
     }
 
-    function formatDate(isoString) {
-      const d = new Date(isoString);
-      return d.toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" });
+    function setQualityByHeight(targetHeight) {
+      if (!hls || !hls.levels) return;
+      const levelIndex = hls.levels.findIndex(level => level.height === targetHeight);
+      if (levelIndex !== -1) {
+        hls.currentLevel = levelIndex;
+      } else {
+        alert("Resolusi tidak tersedia");
+      }
     }
 
-    function renderChannels() {
-      const now = new Date();
-      channels.forEach(ch => {
-        const startTime = new Date(ch.date);
-        const isLive = now >= startTime;
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        scrollBtn.classList.add("show");
+      } else {
+        scrollBtn.classList.remove("show");
+      }
+    });
 
-        const el = document.createElement("div");
-        el.className = "bg-gray-800 rounded-xl p-4 shadow-md w-60 cursor-pointer hover:bg-red-700 text-center";
-        el.setAttribute("onclick", "loadStreamCustom(this)");
-        el.dataset.src = ch.src;
-        el.dataset.poster = ch.poster;
-
-        el.innerHTML = `
-          <h3 class="text-white font-semibold border-b border-gray-500 mb-2">
-            ${ch.title}
-          </h3>
-          ${isLive 
-            ? '<div class="mt-2 text-red-500 text-xs font-bold blink">LIVE</div>' 
-            : `<p class="text-gray-300 text-sm mt-2">${formatDate(ch.date)}</p>`}
-        `;
-
-        container.appendChild(el);
-      });
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
-
-    renderChannels();
   </script>
-
 </body>
 </html>
