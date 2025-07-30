@@ -183,73 +183,109 @@
   </footer>
 
   <script>
-    const video = document.getElementById("videoPlayer");
-    video.muted = false;
-    let hls;
+  const video = document.getElementById("videoPlayer");
+  video.muted = false;
+  let hls;
 
-    function loadStreamCustom(el) {
-      const src = el.dataset.src;
-      const poster = el.dataset.poster;
-      video.poster = poster;
-      video.controls = true;
+  function loadStreamCustom(el) {
+    const src = el.dataset.src;
+    const poster = el.dataset.poster;
+    video.poster = poster;
+    video.controls = true;
 
-      if (Hls.isSupported()) {
-        if (hls) hls.destroy();
-        hls = new Hls();
-        hls.loadSource(src);
-        hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, function () {
-          video.play();
-        });
-      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        video.src = src;
-        video.addEventListener("loadedmetadata", () => {
-          video.play();
-        }, { once: true });
-      }
+    if (Hls.isSupported()) {
+      if (hls) hls.destroy();
+      hls = new Hls();
+      hls.loadSource(src);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function () {
+        video.play();
+      });
 
-      document.getElementById('playerSection').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function setQuality(level) {
-      if (!hls) return;
-      hls.currentLevel = level === 'auto' ? -1 : parseInt(level);
-    }
-
-    function setQualityByHeight(targetHeight) {
-      if (!hls || !hls.levels) return;
-      const levelIndex = hls.levels.findIndex(level => level.height === targetHeight);
-      if (levelIndex !== -1) {
-        hls.currentLevel = levelIndex;
-      } else {
-        alert("Resolusi tidak tersedia");
-      }
-    }
-
-    const scrollBtn = document.getElementById("scrollTopBtn");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        scrollBtn.classList.add("show");
-      } else {
-        scrollBtn.classList.remove("show");
-      }
-    });
-
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const timeNow = new Date();
-      const pTags = document.querySelectorAll('[data-start]');
-
-      pTags.forEach(p => {
-        const start = new Date(p.dataset.start);
-        if (timeNow >= start) {
-          p.innerHTML = '<span class="live-label">LIVE</span>';
+      // ✅ Auto recover on HLS errors
+      hls.on(Hls.Events.ERROR, function (event, data) {
+        if (data.fatal) {
+          console.warn("HLS fatal error:", data);
+          switch (data.type) {
+            case Hls.ErrorTypes.NETWORK_ERROR:
+              console.warn("Network error – trying to recover...");
+              hls.startLoad();
+              break;
+            case Hls.ErrorTypes.MEDIA_ERROR:
+              console.warn("Media error – trying to recover...");
+              hls.recoverMediaError();
+              break;
+            default:
+              console.warn("Unrecoverable error – reloading stream...");
+              hls.destroy();
+              setTimeout(() => {
+                loadStreamCustom({ dataset: { src: src, poster: poster } });
+              }, 1000);
+              break;
+          }
         }
       });
+
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = src;
+      video.addEventListener("loadedmetadata", () => {
+        video.play();
+      }, { once: true });
+    }
+
+    document.getElementById('playerSection').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ✅ Auto-recover on native <video> error
+  video.addEventListener("error", () => {
+    console.warn("Native video error – mencoba reload dan play ulang...");
+    const currentSrc = video.currentSrc || video.src;
+    video.load();
+    video.src = currentSrc;
+    video.play().catch(err => {
+      console.warn("Autoplay gagal:", err);
     });
-  </script>
+  });
+
+  function setQuality(level) {
+    if (!hls) return;
+    hls.currentLevel = level === 'auto' ? -1 : parseInt(level);
+  }
+
+  function setQualityByHeight(targetHeight) {
+    if (!hls || !hls.levels) return;
+    const levelIndex = hls.levels.findIndex(level => level.height === targetHeight);
+    if (levelIndex !== -1) {
+      hls.currentLevel = levelIndex;
+    } else {
+      alert("Resolusi tidak tersedia");
+    }
+  }
+
+  const scrollBtn = document.getElementById("scrollTopBtn");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      scrollBtn.classList.add("show");
+    } else {
+      scrollBtn.classList.remove("show");
+    }
+  });
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const timeNow = new Date();
+    const pTags = document.querySelectorAll('[data-start]');
+
+    pTags.forEach(p => {
+      const start = new Date(p.dataset.start);
+      if (timeNow >= start) {
+        p.innerHTML = '<span class="live-label">LIVE</span>';
+      }
+    });
+  });
+</script>
 </body>
 </html>
