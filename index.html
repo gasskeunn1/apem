@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -5,45 +6,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GameOnX</title>
 
-  <!-- Metadata sosial dan favicon -->
   <meta name="description" content="Tonton live streaming voli di GameOnX.">
   <meta property="og:title" content="GameOnX - Live Streaming">
   <meta property="og:description" content="Tonton live streaming voli di GameOnX.">
   <meta property="og:image" content="https://www.gameonx.my.id/assets/preview.jpg">
   <meta property="og:url" content="https://www.gameonx.my.id">
   <meta property="og:type" content="website">
+
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="GameOnX - Live Streaming">
   <meta name="twitter:description" content="Tonton live streaming voli di GameOnX.">
   <meta name="twitter:image" content="https://www.gameonx.my.id/assets/preview.jpg">
   <meta name="twitter:url" content="https://www.gameonx.my.id">
 
-  <link rel="icon" href="assets/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
   <link rel="manifest" href="assets/site.webmanifest">
+
   <link rel="stylesheet" href="assets/style.css">
+</head>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
-    /* Tambahan gaya kartu dan tombol */
-    .glow-effect { box-shadow: 0 0 10px rgba(75,85,99,0.5); transition: box-shadow 0.3s ease; }
-    .glow-effect:hover { box-shadow: 0 0 12px rgba(75,85,99,0.7); }
-    .channel-card:hover { box-shadow: 0 0 12px rgba(239,68,68,0.6); }
+    .glow-effect {
+      box-shadow: 0 0 10px rgba(75, 85, 99, 0.5), 0 0 20px rgba(75, 85, 99, 0.3);
+      transition: box-shadow 0.3s ease;
+    }
+    .glow-effect:hover {
+      box-shadow: 0 0 12px rgba(75, 85, 99, 0.7), 0 0 25px rgba(75, 85, 99, 0.4);
+    }
+    .channel-card {
+      transition: box-shadow 0.3s ease;
+    }
+    .channel-card:hover {
+      box-shadow: 0 0 12px rgba(239, 68, 68, 0.6), 0 0 24px rgba(239, 68, 68, 0.4);
+    }
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 50;
+      background-color: #1f2937;
+      border-radius: 9999px;
+      padding: 0.75rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      transition: opacity 0.3s ease;
+    }
+    #scrollTopBtn.show {
+      display: block;
+      opacity: 1;
+    }
     .live-label {
-      background-color: #ef4444; color: white; padding: 2px 8px; font-size: 0.75rem;
-      font-weight: bold; border-radius: 4px; display: inline-block;
+      background-color: #ef4444;
+      color: white;
+      padding: 2px 8px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      border-radius: 4px;
+      display: inline-block;
       animation: blink 1s steps(2, start) infinite;
     }
-    @keyframes blink { to { visibility: hidden; } }
-    #scrollTopBtn {
-      display: none; position: fixed; bottom: 30px; right: 30px; z-index: 50;
-      background-color: #1f2937; border-radius: 9999px; padding: 0.75rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3); transition: opacity 0.3s ease;
+    @keyframes blink {
+      to {
+        visibility: hidden;
+      }
     }
-    #scrollTopBtn.show { display: block; opacity: 1; }
   </style>
 </head>
 <script>
@@ -158,7 +190,56 @@
   </div>
 
   <div class="flex justify-center mt-5 px-4">
-    <div id="channelList" class="flex flex-wrap justify-center gap-2 max-w-4xl"></div>        
+      <div class="flex flex-wrap justify-center gap-2 max-w-4x1">      
+      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
+        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/5FYelsSE/live.isml/.m3u8" 
+        data-poster="assets/poster.png">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Italy vs Cuba | Men's VNL 2025</h3>
+        <p class="text-gray-300 text-sm" data-start="2025-07-30T13:30:00+07:00">30-07-2025 13:30 WIB</p>
+      </div>  
+      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
+        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/YWP2ZBUi/live.isml/.m3u8" 
+        data-poster="assets/poster.png">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Brazil vs China | Men's VNL 2025</h3>
+        <p class="text-gray-300 text-sm" data-start="2025-07-30T17:30:00+07:00">30-07-2025 17:30 WIB</p>        
+      </div>
+      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
+        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/pEMDympO/live.isml/.m3u8" 
+        data-poster="assets/poster.png">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">France vs Slovenia | Men's VNL 2025</h3>
+        <p class="text-gray-300 text-sm" data-start="2025-07-31T13:30:00+07:00">31-07-2025 13:30 WIB</p>        
+      </div>
+      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
+        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/Cjhs3xr5/live.isml/.m3u8" 
+        data-poster="assets/poster.png">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Japan vs Poland | Men's VNL 2025</h3>
+        <p class="text-gray-300 text-sm" data-start="2025-07-31T17:30:00+07:00">31-07-2025 17:30 WIB</p>        
+      </div>
+      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
+        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/5b9P07Oq/live.isml/.m3u8" 
+        data-poster="assets/poster.png">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">? vs ? | Semifinal 1 | Men's VNL 2025</h3>
+        <p class="text-gray-300 text-sm" data-start="2025-08-02T13:30:00+07:00">02-08-2025 13:30 WIB</p>
+      </div>  
+      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
+        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/Vsdrpcry/live.isml/.m3u8" 
+        data-poster="assets/poster.png">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">? vs ? | Semifinal 2 | Men's VNL 2025</h3>
+        <p class="text-gray-300 text-sm" data-start="2025-08-02T17:30:00+07:00">02-08-2025 17:30 WIB</p>        
+      </div>
+      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
+        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/CbqRsQkz/live.isml/.m3u8" 
+        data-poster="assets/poster.png">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">? vs ? | Bronze | Men's VNL 2025</h3>
+        <p class="text-gray-300 text-sm" data-start="2025-08-03T13:30:00+07:00">03-08-2025 13:30 WIB</p>        
+      </div>
+      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
+        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/s5ouCbQt/live.isml/.m3u8" 
+        data-poster="assets/poster.png">
+        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">? vs ? | Gold | Men's VNL 2025</h3>
+        <p class="text-gray-300 text-sm" data-start="2025-08-03T17:30:00+07:00">03-08-2025 17:30 WIB</p>        
+      </div>        
+    </div>
   </div>
 
   <div id="donasi" class="flex justify-center mt-20 px-4">
@@ -171,6 +252,7 @@
   <footer class="text-center text-xs text-gray-400 mt-auto py-4">
     © 2025 GameOnX
   </footer>
+
 
   <script>
     const video = document.getElementById("videoPlayer");
@@ -228,59 +310,6 @@
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-    async function loadChannels() {
-      const container = document.getElementById('channelList');
-      try {
-        const response = await fetch('channels.json');
-        const channels = await response.json();
-
-      channels.forEach(ch => {
-        const card = document.createElement('div');
-        card.className = "bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center";
-        card.setAttribute("data-src", ch.src);
-        card.setAttribute("data-poster", ch.poster);
-        card.onclick = function () { loadStreamCustom(this); };
-
-        const title = document.createElement('h3');
-        title.className = "text-white font-semibold border-b border-gray-500 mb-2";
-        title.textContent = ch.title;
-
-        const schedule = document.createElement('p');
-        schedule.className = "text-gray-300 text-sm";
-        schedule.setAttribute("data-start", ch.start);
-        schedule.textContent = formatDate(ch.start);
-
-        card.appendChild(title);
-        card.appendChild(schedule);
-        container.appendChild(card);
-      });
-
-      // Jalankan ulang deteksi "LIVE"
-      document.querySelectorAll('[data-start]').forEach(p => {
-        const start = new Date(p.dataset.start);
-        if (new Date() >= start) {
-          p.innerHTML = '<span class="live-label">LIVE</span>';
-        }
-      });
-
-    } catch (e) {
-      console.error('Gagal memuat channel:', e);
-    }
-  }
-
-  function formatDate(dateStr) {
-    const d = new Date(dateStr);
-    const formatter = new Intl.DateTimeFormat("id-ID", {
-      day: "2-digit", month: "2-digit", year: "numeric",
-      hour: "2-digit", minute: "2-digit",
-      hour12: false,
-      timeZone: "Asia/Jakarta"
-    });
-    return formatter.format(d) + " WIB";
-  }
-
-  // Jalankan saat halaman siap
-  document.addEventListener("DOMContentLoaded", loadChannels);
-</script>
+  </script>
 </body>
 </html>
