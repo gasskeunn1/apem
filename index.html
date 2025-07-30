@@ -5,76 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GameOnX</title>
 
+  <!-- Metadata sosial dan favicon -->
   <meta name="description" content="Tonton live streaming voli di GameOnX.">
   <meta property="og:title" content="GameOnX - Live Streaming">
   <meta property="og:description" content="Tonton live streaming voli di GameOnX.">
   <meta property="og:image" content="https://www.gameonx.my.id/assets/preview.jpg">
   <meta property="og:url" content="https://www.gameonx.my.id">
   <meta property="og:type" content="website">
-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="GameOnX - Live Streaming">
   <meta name="twitter:description" content="Tonton live streaming voli di GameOnX.">
   <meta name="twitter:image" content="https://www.gameonx.my.id/assets/preview.jpg">
   <meta name="twitter:url" content="https://www.gameonx.my.id">
 
+  <link rel="icon" href="assets/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-
   <link rel="manifest" href="assets/site.webmanifest">
-
   <link rel="stylesheet" href="assets/style.css">
-</head>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
-    .glow-effect {
-      box-shadow: 0 0 10px rgba(75, 85, 99, 0.5), 0 0 20px rgba(75, 85, 99, 0.3);
-      transition: box-shadow 0.3s ease;
-    }
-    .glow-effect:hover {
-      box-shadow: 0 0 12px rgba(75, 85, 99, 0.7), 0 0 25px rgba(75, 85, 99, 0.4);
-    }
-    .channel-card {
-      transition: box-shadow 0.3s ease;
-    }
-    .channel-card:hover {
-      box-shadow: 0 0 12px rgba(239, 68, 68, 0.6), 0 0 24px rgba(239, 68, 68, 0.4);
-    }
-    #scrollTopBtn {
-      display: none;
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 50;
-      background-color: #1f2937;
-      border-radius: 9999px;
-      padding: 0.75rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      transition: opacity 0.3s ease;
-    }
-    #scrollTopBtn.show {
-      display: block;
-      opacity: 1;
-    }
+    /* Tambahan gaya kartu dan tombol */
+    .glow-effect { box-shadow: 0 0 10px rgba(75,85,99,0.5); transition: box-shadow 0.3s ease; }
+    .glow-effect:hover { box-shadow: 0 0 12px rgba(75,85,99,0.7); }
+    .channel-card:hover { box-shadow: 0 0 12px rgba(239,68,68,0.6); }
     .live-label {
-      background-color: #ef4444;
-      color: white;
-      padding: 2px 8px;
-      font-size: 0.75rem;
-      font-weight: bold;
-      border-radius: 4px;
-      display: inline-block;
+      background-color: #ef4444; color: white; padding: 2px 8px; font-size: 0.75rem;
+      font-weight: bold; border-radius: 4px; display: inline-block;
       animation: blink 1s steps(2, start) infinite;
     }
-    @keyframes blink {
-      to {
-        visibility: hidden;
-      }
+    @keyframes blink { to { visibility: hidden; } }
+    #scrollTopBtn {
+      display: none; position: fixed; bottom: 30px; right: 30px; z-index: 50;
+      background-color: #1f2937; border-radius: 9999px; padding: 0.75rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3); transition: opacity 0.3s ease;
     }
+    #scrollTopBtn.show { display: block; opacity: 1; }
   </style>
 </head>
 <script>
