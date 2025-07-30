@@ -224,6 +224,26 @@
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
+
+    document.querySelectorAll('[data-start]').forEach(card => {
+      const timeElem = card.querySelector('[data-start]');
+      const startTime = new Date(timeElem.dataset.start);
+      const now = new Date();
+
+      // Format waktu lokal pengguna
+      const localTimeString = startTime.toLocaleString(undefined, {
+        dateStyle: 'short', timeStyle: 'short'
+      });
+      timeElem.textContent = `${localTimeString} (local time)`;
+
+      // Tambah label LIVE jika sudah mulai
+      if (now >= startTime) {
+        const liveBadge = document.createElement('div');
+        liveBadge.textContent = '🔴 LIVE';
+        liveBadge.className = 'text-red-500 font-bold text-sm mt-1';
+        card.appendChild(liveBadge);
+      }
+    });
   </script>
 </body>
 </html>
