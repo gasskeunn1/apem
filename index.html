@@ -261,40 +261,9 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-
-<!-- SCRIPT TAMBAHAN UNTUK MEMUAT CHANNEL DARI JSON -->
-
-  fetch('channels.json')
-    .then(res => res.json())
-    .then(data => {
-      const container = document.getElementById('channelContainer');
-      data.forEach(channel => {
-        const card = document.createElement('div');
-        card.className = 'bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center';
-        card.setAttribute('data-src', channel.src);
-        card.setAttribute('data-poster', channel.poster);
-        card.onclick = function () { loadStreamCustom(this); };
-
-        const title = document.createElement('h3');
-        title.className = 'text-white font-semibold border-b border-gray-500 mb-2';
-        title.textContent = channel.title;
-
-        const time = document.createElement('p');
-        time.className = 'text-gray-300 text-sm';
-        time.setAttribute('data-start', channel.start);
-        time.textContent = formatDate(channel.start);
-
-        card.appendChild(title);
-        card.appendChild(time);
-        container.appendChild(card);
-      });
-
-      updateLiveLabels();
-    });
-
   function formatDate(dateStr) {
     const date = new Date(dateStr);
-    const tzOffset = -date.getTimezoneOffset(); // dalam menit
+    const tzOffset = -date.getTimezoneOffset();
 
     let label = '';
     switch (tzOffset) {
@@ -314,6 +283,60 @@
 
     return `${formatted} ${label}`;
   }
+
+  function updateLiveLabels() {
+    const now = new Date();
+    const pTags = document.querySelectorAll('[data-start]');
+    pTags.forEach(p => {
+      const start = new Date(p.dataset.start);
+      if (now >= start) {
+        p.innerHTML = '<span class="live-label">LIVE</span>';
+      }
+    });
+  }
+
+  function refreshChannels() {
+    const container = document.getElementById('channelContainer');
+    container.innerHTML = ""; 
+
+    fetch('channels.json')
+      .then(res => res.json())
+      .then(data => {
+        data.forEach(channel => {
+          const card = document.createElement('div');
+          card.className = 'bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center';
+          card.setAttribute('data-src', channel.src);
+          card.setAttribute('data-poster', channel.poster);
+          card.onclick = function () { loadStreamCustom(this); };
+
+          const title = document.createElement('h3');
+          title.className = 'text-white font-semibold border-b border-gray-500 mb-2';
+          title.textContent = channel.title;
+
+          const time = document.createElement('p');
+          time.className = 'text-gray-300 text-sm';
+          time.setAttribute('data-start', channel.start);
+          time.textContent = formatDate(channel.start);
+
+          card.appendChild(title);
+          card.appendChild(time);
+          container.appendChild(card);
+        });
+
+        updateLiveLabels();
+      })
+      .catch(error => {
+        console.error("Gagal memuat channel:", error);
+      });
+  }
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+    refreshChannels();
+
+
+    setInterval(refreshChannels, 60000);
+  });
 </script>
 </body>
 </html>
