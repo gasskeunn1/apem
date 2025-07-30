@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -189,56 +190,7 @@
   </div>
 
   <div class="flex justify-center mt-5 px-4">
-      <div class="flex flex-wrap justify-center gap-2 max-w-4x1">      
-      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
-        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/5FYelsSE/live.isml/.m3u8" 
-        data-poster="assets/poster.png">
-        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Italy vs Cuba | Men's VNL 2025</h3>
-        <p class="text-gray-300 text-sm" data-start="2025-07-30T13:30:00+07:00">30-07-2025 13:30 WIB</p>
-      </div>  
-      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
-        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/YWP2ZBUi/live.isml/.m3u8" 
-        data-poster="assets/poster.png">
-        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Brazil vs China | Men's VNL 2025</h3>
-        <p class="text-gray-300 text-sm" data-start="2025-07-30T17:30:00+07:00">30-07-2025 17:30 WIB</p>        
-      </div>
-      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
-        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/pEMDympO/live.isml/.m3u8" 
-        data-poster="assets/poster.png">
-        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">France vs Slovenia | Men's VNL 2025</h3>
-        <p class="text-gray-300 text-sm" data-start="2025-07-31T13:30:00+07:00">31-07-2025 13:30 WIB</p>        
-      </div>
-      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
-        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/Cjhs3xr5/live.isml/.m3u8" 
-        data-poster="assets/poster.png">
-        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Japan vs Poland | Men's VNL 2025</h3>
-        <p class="text-gray-300 text-sm" data-start="2025-07-31T17:30:00+07:00">31-07-2025 17:30 WIB</p>        
-      </div>
-      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
-        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/5b9P07Oq/live.isml/.m3u8" 
-        data-poster="assets/poster.png">
-        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">? vs ? | Semifinal 1 | Men's VNL 2025</h3>
-        <p class="text-gray-300 text-sm" data-start="2025-08-02T13:30:00+07:00">02-08-2025 13:30 WIB</p>
-      </div>  
-      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
-        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/Vsdrpcry/live.isml/.m3u8" 
-        data-poster="assets/poster.png">
-        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">? vs ? | Semifinal 2 | Men's VNL 2025</h3>
-        <p class="text-gray-300 text-sm" data-start="2025-08-02T17:30:00+07:00">02-08-2025 17:30 WIB</p>        
-      </div>
-      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
-        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/CbqRsQkz/live.isml/.m3u8" 
-        data-poster="assets/poster.png">
-        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">? vs ? | Bronze | Men's VNL 2025</h3>
-        <p class="text-gray-300 text-sm" data-start="2025-08-03T13:30:00+07:00">03-08-2025 13:30 WIB</p>        
-      </div>
-      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
-        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/s5ouCbQt/live.isml/.m3u8" 
-        data-poster="assets/poster.png">
-        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">? vs ? | Gold | Men's VNL 2025</h3>
-        <p class="text-gray-300 text-sm" data-start="2025-08-03T17:30:00+07:00">03-08-2025 17:30 WIB</p>        
-      </div>        
-    </div>
+    <div class="flex flex-wrap justify-center gap-2 max-w-4x1" id="channelContainer"></div>
   </div>
 
   <div id="donasi" class="flex justify-center mt-20 px-4">
@@ -252,62 +204,114 @@
     © 2025 GameOnX
   </footer>
 
-  <script>
-    const video = document.getElementById("videoPlayer");
-    video.muted = false;
-    let hls;
+<script>
+  const video = document.getElementById("videoPlayer");
+  video.muted = false;
+  let hls;
 
-    function loadStreamCustom(el) {
-      const src = el.dataset.src;
-      const poster = el.dataset.poster;
-      video.poster = poster;
-      video.controls = true;
+  function loadStreamCustom(el) {
+    const src = el.dataset.src;
+    const poster = el.dataset.poster;
+    video.poster = poster;
+    video.controls = true;
 
-      if (Hls.isSupported()) {
-        if (hls) hls.destroy();
-        hls = new Hls();
-        hls.loadSource(src);
-        hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, function () {
-          video.play();
-        });
-      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        video.src = src;
-        video.addEventListener("loadedmetadata", () => {
-          video.play();
-        }, { once: true });
-      }
-
-      document.getElementById('playerSection').scrollIntoView({ behavior: 'smooth' });
+    if (Hls.isSupported()) {
+      if (hls) hls.destroy();
+      hls = new Hls();
+      hls.loadSource(src);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function () {
+        video.play();
+      });
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = src;
+      video.addEventListener("loadedmetadata", () => {
+        video.play();
+      }, { once: true });
     }
 
-    function setQuality(level) {
-      if (!hls) return;
-      hls.currentLevel = level === 'auto' ? -1 : parseInt(level);
-    }
+    document.getElementById('playerSection').scrollIntoView({ behavior: 'smooth' });
+  }
 
-    function setQualityByHeight(targetHeight) {
-      if (!hls || !hls.levels) return;
-      const levelIndex = hls.levels.findIndex(level => level.height === targetHeight);
-      if (levelIndex !== -1) {
-        hls.currentLevel = levelIndex;
-      } else {
-        alert("Resolusi tidak tersedia");
-      }
-    }
+  function setQuality(level) {
+    if (!hls) return;
+    hls.currentLevel = level === 'auto' ? -1 : parseInt(level);
+  }
 
-    const scrollBtn = document.getElementById("scrollTopBtn");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        scrollBtn.classList.add("show");
-      } else {
-        scrollBtn.classList.remove("show");
-      }
+  function setQualityByHeight(targetHeight) {
+    if (!hls || !hls.levels) return;
+    const levelIndex = hls.levels.findIndex(level => level.height === targetHeight);
+    if (levelIndex !== -1) {
+      hls.currentLevel = levelIndex;
+    } else {
+      alert("Resolusi tidak tersedia");
+    }
+  }
+
+  const scrollBtn = document.getElementById("scrollTopBtn");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      scrollBtn.classList.add("show");
+    } else {
+      scrollBtn.classList.remove("show");
+    }
+  });
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+
+<!-- SCRIPT TAMBAHAN UNTUK MEMUAT CHANNEL DARI JSON -->
+
+  fetch('channels.json')
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById('channelContainer');
+      data.forEach(channel => {
+        const card = document.createElement('div');
+        card.className = 'bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center';
+        card.setAttribute('data-src', channel.src);
+        card.setAttribute('data-poster', channel.poster);
+        card.onclick = function () { loadStreamCustom(this); };
+
+        const title = document.createElement('h3');
+        title.className = 'text-white font-semibold border-b border-gray-500 mb-2';
+        title.textContent = channel.title;
+
+        const time = document.createElement('p');
+        time.className = 'text-gray-300 text-sm';
+        time.setAttribute('data-start', channel.start);
+        time.textContent = formatDate(channel.start);
+
+        card.appendChild(title);
+        card.appendChild(time);
+        container.appendChild(card);
+      });
+
+      updateLiveLabels();
     });
 
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  </script>
+  function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    return date.toLocaleString("id-ID", {
+      day: "2-digit", month: "2-digit", year: "numeric",
+      hour: "2-digit", minute: "2-digit",
+      timeZone: "Asia/Jakarta"
+    }).replace(",", "") + " WIB";
+  }
+
+  function updateLiveLabels() {
+    const timeNow = new Date();
+    const pTags = document.querySelectorAll('[data-start]');
+    pTags.forEach(p => {
+      const start = new Date(p.dataset.start);
+      if (timeNow >= start) {
+        p.innerHTML = '<span class="live-label">LIVE</span>';
+      }
+    });
+  }
+</script>
+
 </body>
 </html>
