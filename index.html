@@ -261,9 +261,6 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-
-<!-- SCRIPT TAMBAHAN UNTUK MEMUAT CHANNEL DARI JSON -->
-
   fetch('channels.json')
     .then(res => res.json())
     .then(data => {
