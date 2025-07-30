@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -23,150 +22,87 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-
   <link rel="manifest" href="assets/site.webmanifest">
-
   <link rel="stylesheet" href="assets/style.css">
-</head>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
-    .glow-effect {
-      box-shadow: 0 0 10px rgba(75, 85, 99, 0.5), 0 0 20px rgba(75, 85, 99, 0.3);
-      transition: box-shadow 0.3s ease;
-    }
-    .glow-effect:hover {
-      box-shadow: 0 0 12px rgba(75, 85, 99, 0.7), 0 0 25px rgba(75, 85, 99, 0.4);
-    }
-    .channel-card {
-      transition: box-shadow 0.3s ease;
-    }
-    .channel-card:hover {
-      box-shadow: 0 0 12px rgba(239, 68, 68, 0.6), 0 0 24px rgba(239, 68, 68, 0.4);
-    }
-    #scrollTopBtn {
-      display: none;
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 50;
-      background-color: #1f2937;
-      border-radius: 9999px;
-      padding: 0.75rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      transition: opacity 0.3s ease;
-    }
-    #scrollTopBtn.show {
-      display: block;
-      opacity: 1;
-    }
+    .glow-effect { box-shadow: 0 0 10px rgba(75, 85, 99, 0.5), 0 0 20px rgba(75, 85, 99, 0.3); transition: box-shadow 0.3s ease; }
+    .glow-effect:hover { box-shadow: 0 0 12px rgba(75, 85, 99, 0.7), 0 0 25px rgba(75, 85, 99, 0.4); }
+    .channel-card:hover { box-shadow: 0 0 12px rgba(239, 68, 68, 0.6), 0 0 24px rgba(239, 68, 68, 0.4); }
+    #scrollTopBtn { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 50; background-color: #1f2937; border-radius: 9999px; padding: 0.75rem; box-shadow: 0 4px 6px rgba(0,0,0,0.3); transition: opacity 0.3s ease; }
+    #scrollTopBtn.show { display: block; opacity: 1; }
   </style>
 </head>
 
 <body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col relative">
-
   <button id="scrollTopBtn" onclick="scrollToTop()" class="hover:bg-gray-700">
-    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2"
-      viewBox="0 0 24 24">
+    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
     </svg>
   </button>
 
   <div class="px-4 pt-4">
-    <header class="flex justify-between items-center px-4 py-3 bg-gray-800 shadow-md rounded-md">
-      <div>
-        <img src="assets/gameonx logo 3.png" alt="GameOnX Logo" class="h-12 w-auto sm:h-10 md:h-12 lg:h-16">
-      </div>
-      <div class="flex gap-2 text-sm">
-        <a href="https://chat.whatsapp.com/L9pViyD35Zq439t75avxq8" target="_blank" class="bg-gray-600 px-3 py-1 rounded-lg font-semibold">Join Grup</a>
-        <a href="https://sociabuzz.com/fiqaz/donate" target="_blank" class="bg-gray-600 px-3 py-1 rounded-lg font-semibold">Donasi</a>
-      </div>
-    </header>
-  </div>
+  <header class="flex justify-between items-center px-2 py- bg-gray-800 shadow-md rounded-md">
+    <a href="/">
+      <img src="assets/gameonx logo 3.png" alt="GameOnX Logo" class="h-12 w-auto sm:h-10 md:h-12 lg:h-16 hover:opacity-80 transition duration-300">
+    </a>
+    <div class="flex gap-2 text-sm">
+      <a href="https://chat.whatsapp.com/L9pViyD35Zq439t75avxq8" target="_blank" class="bg-gray-600 px-3 py-1 rounded-lg font-semibold">Join Grup</a>
+      <a href="https://sociabuzz.com/fiqaz/donate" target="_blank" class="bg-gray-600 px-3 py-1 rounded-lg font-semibold">Sawer</a>
+    </div>
+  </header>
+</div>
+
   <div class="text-center mt-4 mb-2">
-    <div class="inline-block bg-gradient-to-r from-gray-800 to-gray-700 px-6 py-2 rounded text-lg font-bold text-white shadow-lg border border-gray-600 transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+    <div class="inline-block bg-gradient-to-r from-gray-800 to-gray-700 px-2 py-1 rounded text-lg font-bold text-white shadow-lg border border-gray-600 transition-transform duration-300 hover:scale-105">
       🔴LIVE STREAMING
     </div>
   </div>
 
   <div class="flex justify-center mt-4 px-4" id="playerSection">
     <div class="w-full max-w-4xl">
-      <video id="videoPlayer" class="w-full rounded shadow-2xl bg-black glow-effect" poster="assets/poster.png"></video>
+      <video id="videoPlayer" class="w-full rounded-md shadow-2xl bg-black glow-effect" poster="assets/poster.png"></video>
     </div>
   </div>
 
   <div class="flex justify-center mt-4 gap-2 text-sm flex-wrap">
-    <button class="bg-transparent border border-white/30 text-white px-3 py-1 rounded hover:bg-white/10 transition" onclick="setQuality('auto')">Auto</button>
-    <button class="bg-transparent border border-white/30 text-white px-3 py-1 rounded hover:bg-white/10 transition" onclick="setQualityByHeight(360)">360p</button>
-    <button class="bg-transparent border border-white/30 text-white px-3 py-1 rounded hover:bg-white/10 transition" onclick="setQualityByHeight(540)">540p</button>
-    <button class="bg-transparent border border-white/30 text-white px-3 py-1 rounded hover:bg-white/10 transition" onclick="setQualityByHeight(720)">720p</button>
-    <button class="bg-transparent border border-white/30 text-white px-3 py-1 rounded hover:bg-white/10 transition" onclick="setQualityByHeight(1080)">1080p</button>
+    <button onclick="setQuality('auto')" class="bg-transparent border border-white/30 text-white text-xs px-1.5 py-0.5 rounded hover:bg-white/20">Auto</button>
+    <button onclick="setQualityByHeight(360)" class="bg-transparent border border-white/30 text-white text-xs px-1.5 py-0.5 rounded hover:bg-white/20">360p</button>
+    <button onclick="setQualityByHeight(540)" class="bg-transparent border border-white/30 text-white text-xs px-1.5 py-0.5 rounded hover:bg-white/20">540p</button>
+    <button onclick="setQualityByHeight(720)" class="bg-transparent border border-white/30 text-white text-xs px-1.5 py-0.5 rounded hover:bg-white/20">720p</button>
+    <button onclick="setQualityByHeight(1080)" class="bg-transparent border border-white/30 text-white text-xs px-1.5 py-0.5 rounded hover:bg-white/20">1080p</button>
   </div>
 
-  <div class="flex justify-center mt-5 px-4">
-      <div class="flex flex-wrap justify-center gap-2 max-w-4x1">      
-      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
-        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/5FYelsSE/live.isml/.m3u8" 
-        data-poster="assets/poster.png">
-        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Italy vs Cuba | Men's VNL 2025</h3>
-        <p class="text-gray-300 text-sm" data-start="2025-07-30T13:30:00+07:00">30-07-2025 13:30 WIB</p>
-      </div>  
-      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
-        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/YWP2ZBUi/live.isml/.m3u8" 
-        data-poster="assets/poster.png">
-        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Brazil vs China | Men's VNL 2025</h3>
-        <p class="text-gray-300 text-sm" data-start="2025-07-30T17:30:00+07:00">30-07-2025 17:30 WIB</p>        
-      </div>
-      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
-        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/pEMDympO/live.isml/.m3u8" 
-        data-poster="assets/poster.png">
-        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">France vs Slovenia | Men's VNL 2025</h3>
-        <p class="text-gray-300 text-sm" data-start="2025-07-31T13:30:00+07:00">31-07-2025 13:30 WIB</p>        
-      </div>
-      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
-        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/Cjhs3xr5/live.isml/.m3u8" 
-        data-poster="assets/poster.png">
-        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Japan vs Poland | Men's VNL 2025</h3>
-        <p class="text-gray-300 text-sm" data-start="2025-07-31T17:30:00+07:00">31-07-2025 17:30 WIB</p>        
-      </div>
-      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
-        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/5b9P07Oq/live.isml/.m3u8" 
-        data-poster="assets/poster.png">
-        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">? vs ? | Semifinal 1 | Men's VNL 2025</h3>
-        <p class="text-gray-300 text-sm" data-start="2025-08-02T13:30:00+07:00">02-08-2025 13:30 WIB</p>
-      </div>  
-      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
-        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/Vsdrpcry/live.isml/.m3u8" 
-        data-poster="assets/poster.png">
-        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">? vs ? | Semifinal 2 | Men's VNL 2025</h3>
-        <p class="text-gray-300 text-sm" data-start="2025-08-02T17:30:00+07:00">02-08-2025 17:30 WIB</p>        
-      </div>
-      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
-        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/CbqRsQkz/live.isml/.m3u8" 
-        data-poster="assets/poster.png">
-        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">? vs ? | Bronze | Men's VNL 2025</h3>
-        <p class="text-gray-300 text-sm" data-start="2025-08-03T13:30:00+07:00">03-08-2025 13:30 WIB</p>        
-      </div>
-      <div class="bg-gray-800 rounded-md p-3 shadow-mb w-50 cursor-pointer hover:bg-red-700 text-center" onclick="loadStreamCustom(this)" 
-        data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/s5ouCbQt/live.isml/.m3u8" 
-        data-poster="assets/poster.png">
-        <h3 class="text-white font-semibold border-b border-gray-500 mb-2">? vs ? | Gold | Men's VNL 2025</h3>
-        <p class="text-gray-300 text-sm" data-start="2025-08-03T17:30:00+07:00">03-08-2025 17:30 WIB</p>        
-      </div>        
+  <div id="channelContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-4 mt-10 max-w-7xl mx-auto">
+    <div class="bg-gray-800 rounded-md p-3 cursor-pointer hover:bg-red-700 text-center channel-card" onclick="loadStreamCustom(this)"
+      data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/pEMDympO/live.isml/.m3u8"
+      data-poster="https://cdn.jwplayer.com/v2/media/pEMDympO/poster.jpg?width=1920">
+      <h3 class="text-white font-semibold border-b border-gray-500 mb-2">France vs Slovenia</h3>
+      <p class="text-gray-300 text-sm" data-start="2025-07-31T13:30:00+07:00">31-07-2025 13:30 WIB</p>
+    </div>
+    <div class="bg-gray-800 rounded-md p-3 cursor-pointer hover:bg-red-700 text-center channel-card" onclick="loadStreamCustom(this)"
+      data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/Cjhs3xr5/live.isml/.m3u8"
+      data-poster="https://cdn.jwplayer.com/v2/media/Cjhs3xr5/poster.jpg?width=1920">
+      <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Japan vs Poland</h3>
+      <p class="text-gray-300 text-sm" data-start="2025-07-31T17:30:00+07:00">31-07-2025 17:30 WIB</p>
     </div>
   </div>
 
-  <div id="donasi" class="flex justify-center mt-6 px-4">
-    <div class="bg-white p-4 rounded-xl shadow-lg text-center">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://sociabuzz.com/fiqaz/support" alt="QR Donasi" class="mx-auto mb-2" />
-      <p class="text-black font-semibold">Support/Donasi</p>
+  <div id="donasi" class="flex justify-center mt-20 px-4">
+    <div class="bg-white p-2 rounded-md shadow-lg text-center">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https://sociabuzz.com/fiqaz/support" alt="QR Donasi" class="mx-auto mb-2" />
+      <p class="text-black font-semibold">Support/Sawer</p>
     </div>
   </div>
 
   <footer class="text-center text-xs text-gray-400 mt-auto py-4">
     © 2025 GameOnX
   </footer>
+  <script src="script.js"></script>
+</body>
+</html>
 
   <script>
     const video = document.getElementById("videoPlayer");
@@ -184,14 +120,10 @@
         hls = new Hls();
         hls.loadSource(src);
         hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, function () {
-          video.play();
-        });
+        hls.on(Hls.Events.MANIFEST_PARSED, () => video.play());
       } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
         video.src = src;
-        video.addEventListener("loadedmetadata", () => {
-          video.play();
-        }, { once: true });
+        video.addEventListener("loadedmetadata", () => video.play(), { once: true });
       }
 
       document.getElementById('playerSection').scrollIntoView({ behavior: 'smooth' });
@@ -214,16 +146,53 @@
 
     const scrollBtn = document.getElementById("scrollTopBtn");
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        scrollBtn.classList.add("show");
-      } else {
-        scrollBtn.classList.remove("show");
-      }
+      scrollBtn.classList.toggle("show", window.scrollY > 300);
     });
-
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
+
+    // 🔴 LIVE Label & Time Formatter
+    const timeOffset = { 420: "WIB", 480: "WITA", 540: "WIT" };
+    const getUserZoneLabel = () => timeOffset[-new Date().getTimezoneOffset()] || "WIB";
+    function formatToLocalTime(dateStr) {
+       const date = new Date(dateStr);
+       const zone = getUserZoneLabel();
+       const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false };
+       return date.toLocaleString('id-ID', options).replace(',', '') + ' ' + zone;
+    }
+    function updateChannelCards() {
+      const container = document.querySelector('#channelContainer');
+      const cards = Array.from(container.children);
+      const now = new Date();
+      cards.forEach(card => {
+        const label = card.querySelector('[data-start]');
+        const timeStr = label.getAttribute('data-start');
+        const startDate = new Date(timeStr);
+
+        if (now >= startDate) {
+          label.textContent = "🔴 LIVE";
+          label.className = "text-red-500 font-bold animate-pulse";
+          card.classList.add("border", "border-red-500");
+        } else {
+          label.textContent = formatToLocalTime(timeStr);
+         label.className = "text-gray-300 text-sm";
+        }
+      });
+      cards.sort((a, b) => {
+        const now = new Date();
+        const aTime = new Date(a.querySelector('[data-start]').dataset.start);
+        const bTime = new Date(b.querySelector('[data-start]').dataset.start);
+        const aLive = now >= aTime;
+        const bLive = now >= bTime;
+        if (aLive && !bLive) return -1;
+        if (!aLive && bLive) return 1;
+        return aTime - bTime;
+      });
+      container.innerHTML = '';
+      cards.forEach(card => container.appendChild(card));
+    }
+    window.addEventListener("DOMContentLoaded", updateChannelCards);
   </script>
 </body>
 </html>
