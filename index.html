@@ -243,6 +243,19 @@
         liveBadge.className = 'text-red-500 font-bold text-sm mt-1';
         card.appendChild(liveBadge);
       }
+    document.querySelectorAll("[data-start]").forEach(el => {
+      const iso = el.dataset.start;
+      const date = new Date(iso);
+      const formatter = new Intl.DateTimeFormat(navigator.language, {
+        weekday: "short",
+        day: "numeric",
+        month: "short",
+        year: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+      });
+      el.textContent = formatter.format(date);
     });
   </script>
 </body>
