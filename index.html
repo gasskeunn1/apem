@@ -196,7 +196,7 @@
 
       document.getElementById('playerSection').scrollIntoView({ behavior: 'smooth' });
     }
-
+ 
     function setQuality(level) {
       if (!hls) return;
       hls.currentLevel = level === 'auto' ? -1 : parseInt(level);
@@ -225,38 +225,61 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    document.querySelectorAll('[data-start]').forEach(card => {
-      const timeElem = card.querySelector('[data-start]');
-      const startTime = new Date(timeElem.dataset.start);
-      const now = new Date();
+    async function loadChannels() {
+      const res = await fetch('channels.json');
+      const channels = await res.json();
+      const container = document.getElementById("channelList");
 
-      // Format waktu lokal pengguna
-      const localTimeString = startTime.toLocaleString(undefined, {
-        dateStyle: 'short', timeStyle: 'short'
-      });
-      timeElem.textContent = `${localTimeString} (local time)`;
+      channels.forEach(channel => {
+        const card = document.createElement("div");
+        card.className = "bg-zinc-800 rounded-xl overflow-hidden shadow-lg channel-card cursor-pointer hover:shadow-red-500";
+        card.dataset.src = channel.src;
+        card.dataset.poster = channel.poster;
+        card.dataset.start = channel.start;
+        card.onclick = () => loadStreamCustom(card);
 
-      // Tambah label LIVE jika sudah mulai
-      if (now >= startTime) {
-        const liveBadge = document.createElement('div');
-        liveBadge.textContent = '🔴 LIVE';
-        liveBadge.className = 'text-red-500 font-bold text-sm mt-1';
-        card.appendChild(liveBadge);
-      }
-    document.querySelectorAll("[data-start]").forEach(el => {
-      const iso = el.dataset.start;
-      const date = new Date(iso);
-      const formatter = new Intl.DateTimeFormat(navigator.language, {
-        weekday: "short",
-        day: "numeric",
-        month: "short",
-        year: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false
+        const img = document.createElement("img");
+        img.src = channel.poster;
+        img.alt = channel.title;
+        img.className = "w-full h-48 object-cover";
+
+        const cardBody = document.createElement("div");
+        cardBody.className = "p-4";
+
+        const title = document.createElement("h2");
+        title.className = "text-lg font-bold mb-2 text-white";
+        title.textContent = channel.title;
+
+        const time = document.createElement("p");
+        time.className = "text-gray-300 text-sm";
+        time.dataset.start = channel.start;
+
+        cardBody.appendChild(title);
+        cardBody.appendChild(time);
+        card.appendChild(img);
+        card.appendChild(cardBody);
+        container.appendChild(card);
       });
-      el.textContent = formatter.format(date);
-    });
+
+      document.querySelectorAll("[data-start]").forEach(el => {
+        const iso = el.dataset.start;
+        const date = new Date(iso);
+        const formatter = new Intl.DateTimeFormat(navigator.language, {
+          weekday: "short", day: "numeric", month: "short", year: "2-digit",
+          hour: "2-digit", minute: "2-digit", hour12: false
+        });
+        el.textContent = formatter.format(date);
+
+        if (new Date() >= date) {
+          const badge = document.createElement("div");
+          badge.textContent = "🔴 LIVE";
+          badge.className = "text-red-500 font-bold text-sm mt-1";
+          el.parentNode.appendChild(badge);
+        }
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", loadChannels);
   </script>
 </body>
 </html>
