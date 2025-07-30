@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Italy vs Cuba | Men's VNL 2025",
+    "src": "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/5FYelsSE/live.isml/.m3u8",
+    "poster": "assets/poster.png",
+    "start": "2025-07-30T13:30:00+07:00"
+  },
+  {
+    "title": "Brazil vs China | Men's VNL 2025",
+    "src": "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/YWP2ZBUi/live.isml/.m3u8",
+    "poster": "assets/poster.png",
+    "start": "2025-07-30T17:30:00+07:00"
+  },
+  {
+    "title": "France vs Slovenia | Men's VNL 2025",
+    "src": "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/pEMDympO/live.isml/.m3u8",
+    "poster": "assets/poster.png",
+    "start": "2025-07-31T13:30:00+07:00"
+  },
+  {
+    "title": "Japan vs Poland | Men's VNL 2025",
+    "src": "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/Cjhs3xr5/live.isml/.m3u8",
+    "poster": "assets/poster.png",
+    "start": "2025-07-31T17:30:00+07:00"
+  },
+  {
+    "title": "? vs ? | Semifinal 1 | Men's VNL 2025",
+    "src": "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/5b9P07Oq/live.isml/.m3u8",
+    "poster": "assets/poster.png",
+    "start": "2025-08-02T13:30:00+07:00"
+  },
+  {
+    "title": "? vs ? | Semifinal 2 | Men's VNL 2025",
+    "src": "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/Vsdrpcry/live.isml/.m3u8",
+    "poster": "assets/poster.png",
+    "start": "2025-08-02T17:30:00+07:00"
+  },
+  {
+    "title": "? vs ? | Bronze | Men's VNL 2025",
+    "src": "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/CbqRsQkz/live.isml/.m3u8",
+    "poster": "assets/poster.png",
+    "start": "2025-08-03T13:30:00+07:00"
+  },
+  {
+    "title": "? vs ? | Gold | Men's VNL 2025",
+    "src": "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/s5ouCbQt/live.isml/.m3u8",
+    "poster": "assets/poster.png",
+    "start": "2025-08-03T17:30:00+07:00"
+  }
+]
