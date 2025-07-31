@@ -152,7 +152,6 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    // 🔴 LIVE Label & Time Formatter
     const timeOffset = { 420: "WIB", 480: "WITA", 540: "WIT" };
     const getUserZoneLabel = () => timeOffset[-new Date().getTimezoneOffset()] || "WIB";
     function formatToLocalTime(dateStr) {
