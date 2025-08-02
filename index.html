@@ -76,30 +76,7 @@
   </div>
 
   <div id="channelContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-4 mt-10 max-w-7xl mx-auto">
-    <div class="bg-gray-800 rounded-md p-3 cursor-pointer hover:bg-red-700 text-center channel-card" onclick="loadStreamCustom(this)"
-      data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/bzNi8Gvs/live.isml/.m3u8"
-      data-poster="https://cdn.jwplayer.com/v2/media/bzNi8Gvs/poster.jpg?width=1920">
-      <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Italy vs Slovenia | Semifinal 1</h3>
-      <p class="text-gray-300 text-sm" data-start="2025-08-02T13:30:00+07:00">Loading...</p>
-    </div>
-    <div class="bg-gray-800 rounded-md p-3 cursor-pointer hover:bg-red-700 text-center channel-card" onclick="loadStreamCustom(this)"
-      data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/px5RqFEW/live.isml/.m3u8"
-      data-poster="https://cdn.jwplayer.com/v2/media/px5RqFEW/poster.jpg?width=1920">
-      <h3 class="text-white font-semibold border-b border-gray-500 mb-2">Brazil vs Poland | Semifinal 2</h3>
-      <p class="text-gray-300 text-sm" data-start="2025-08-02T17:30:00+07:00">Loading...</p>
-    </div>
-    <div class="bg-gray-800 rounded-md p-3 cursor-pointer hover:bg-red-700 text-center channel-card" onclick="loadStreamCustom(this)"
-      data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/kNy3y4ir/live.isml/.m3u8"
-      data-poster="assets/logotvgonx.png">
-      <h3 class="text-white font-semibold border-b border-gray-500 mb-2">? vs ? | Bronze</h3>
-      <p class="text-gray-300 text-sm" data-start="2025-08-03T13:30:00+07:00">Loading...</p>
-    </div>
-    <div class="bg-gray-800 rounded-md p-3 cursor-pointer hover:bg-red-700 text-center channel-card" onclick="loadStreamCustom(this)"
-      data-src="https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/ecxumgml/live.isml/.m3u8"
-      data-poster="assets/logotvgonx.png">
-      <h3 class="text-white font-semibold border-b border-gray-500 mb-2">? vs ? | Gold</h3>
-      <p class="text-gray-300 text-sm" data-start="2025-08-03T17:30:00+07:00">Loading...</p>
-    </div>    
+    
   </div>
 
   <div id="donasi" class="flex justify-center mt-20 px-4">
@@ -204,6 +181,36 @@
       cards.forEach(card => container.appendChild(card));
     }
     window.addEventListener("DOMContentLoaded", updateChannelCards);
+    
+  async function loadChannelCardsFromJSON() {
+    try {
+      const res = await fetch('channels.json');
+      const data = await res.json();
+      const container = document.getElementById("channelContainer");
+      container.innerHTML = "";
+
+      data.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "bg-gray-800 rounded-md p-3 cursor-pointer hover:bg-red-700 text-center channel-card";
+        card.setAttribute("onclick", "loadStreamCustom(this)");
+        card.setAttribute("data-src", item.src);
+        card.setAttribute("data-poster", item.poster);
+
+        card.innerHTML = `
+          <h3 class="text-white font-semibold border-b border-gray-500 mb-2">${item.title}</h3>
+          <p class="text-gray-300 text-sm" data-start="${item.start}">Loading...</p>
+        `;
+
+        container.appendChild(card);
+      });
+
+      updateChannelCards();
+    } catch (error) {
+      console.error("Gagal memuat channels.json:", error);
+    }
+  }
+
+  window.addEventListener("DOMContentLoaded", loadChannelCardsFromJSON);  
   </script>
 </body>
 </html>
