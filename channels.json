@@ -3,12 +3,12 @@
     "title": "Brazil vs Slovenia | Bronze",
     "start": "2025-08-03T13:30:00+07:00",
     "src": "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/kNy3y4ir/live.isml/.m3u8",
-    "poster": "assets/logotvgonx.png"
+    "poster": "https://cdn.jwplayer.com/v2/media/kNy3y4ir/poster.jpg?width=1920"
   },
   {
-    "title": "Poland vs Italy | Gold",
+    "title": "Italy vs Poland | Gold",
     "start": "2025-08-03T17:30:00+07:00",
     "src": "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/ecxumgml/live.isml/.m3u8",
-    "poster": "assets/logotvgonx.png"
+    "poster": "https://cdn.jwplayer.com/v2/media/ecxumgml/poster.jpg?width=1920"
   }
 ]
