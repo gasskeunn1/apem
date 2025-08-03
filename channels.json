@@ -4,5 +4,19 @@
     "start": "2025-08-03T17:30:00+07:00",
     "src": "https://livecdn.euw1-0005.jwplive.com/live/sites/fM9jRrkn/media/ecxumgml/live.isml/.m3u8",
     "poster": "https://cdn.jwplayer.com/v2/media/ecxumgml/poster.jpg?width=1920"
-  }
+  },
+  {
+    "title": "Müller/Tillmann (GER) vs Álvarez M/Moreno (ESP)",
+    "subtitle": "CEV EBV2025 | Women (Bronze Medal)",
+    "start": "2025-08-03T18:15:00+07:00",
+    "src": "",
+    "poster": "assets/logotvgonx.png"
+  },
+  {
+    "title": "Vieira/Chamereau (FRA) vs Hladun/Lazarenko (UKR)",
+    "subtitle": "CEV EBV2025 | Women (Gold Medal)",
+    "start": "2025-08-03T19:30:00+07:00",
+    "src": "",
+    "poster": "assets/logotvgonx.png"
+  }  
 ]
